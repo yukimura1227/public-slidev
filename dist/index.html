@@ -1,16 +1,431 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="https://cdn.jsdelivr.net/gh/slidevjs/slidev/assets/favicon.png">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Avenir+Next:wght@200;400;600&family=Nunito+Sans:wght@200;400;600&family=Fira+Code:wght@200;400;600&display=swap" type="text/css">
-  <script type="module" crossorigin src="/assets/index.db428bc7.js"></script>
-  <link rel="stylesheet" href="/assets/index.026464ea.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yukimura1227's slides</title>
+    <style>
+        :root {
+            --primary-color: #4a6baf;
+            --secondary-color: #f8f9fa;
+            --accent-color: #ff6b6b;
+            --text-color: #333;
+            --light-gray: #e9ecef;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f5f7;
+            padding-bottom: 2rem;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .header-description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .filter-btns {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background-color: var(--secondary-color);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 20px;
+            font-size: 1rem;
+            width: 250px;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            width: 300px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+        }
+
+        .slides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .slide-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .slide-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .slide-thumbnail {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .slide-content {
+            padding: 1.5rem;
+        }
+
+        .slide-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .slide-description {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .slide-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .slide-date {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .slide-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            margin-top: 0.5rem;
+        }
+
+        .slide-tag {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            background-color: var(--light-gray);
+            border-radius: 12px;
+            color: #555;
+        }
+
+        .slide-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .slide-action {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .view-btn {
+            padding: 0.5rem 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .view-btn:hover {
+            background-color: #3a559c;
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            background-color: var(--secondary-color);
+            color: #666;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .social-link {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .filter-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .search-container {
+                width: 100%;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .search-input:focus {
+                width: 100%;
+            }
+
+            .slides-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 <body>
-  <div id="app"></div>
-  
-  
+    <header>
+        <div class="header-content">
+            <h1>yukimura1227's slides</h1>
+            <p class="header-description">様々なテーマについてのスライド資料を公開しています。</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="filter-container">
+            <div class="filter-btns">
+                <button class="filter-btn active" data-filter="all">すべて</button>
+                <button class="filter-btn" data-filter="tech">テクノロジー</button>
+                <button class="filter-btn" data-filter="misc">その他</button>
+            </div>
+
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="スライドを検索...">
+            </div>
+        </div>
+
+        <div class="slides-grid">
+            <div class="slide-card" data-category="tech">
+                <div class="featured-badge">注目</div>
+                <a href="/slides/20241024_it_engineer_scary_experience_lt/index.html" class="slide-link">
+                    <img src="https://placehold.jp/400x320.png" alt="ITエンジニアLT大会 本当にあった怖い体験談" class="slide-thumbnail">
+                    <div class="slide-content">
+                        <h3 class="slide-title">ITエンジニアLT大会 本当にあった怖い体験談</h3>
+                        <p class="slide-description">ITエンジニアLT大会 本当にあった怖い体験談</p>
+                        <div class="slide-tags">
+                            <span class="slide-tag">テクノロジー</span>
+                        </div>
+                        <div class="slide-action">
+                            <div class="slide-meta">
+                                <div class="slide-date">
+                                    <i class="far fa-calendar-alt"></i>
+                                    <span>2024年10月24日</span>
+                                </div>
+                            </div>
+                            <a href="/slides/20241024_it_engineer_scary_experience_lt/index.html" class="view-btn">閲覧する</a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- スライド2 -->
+            <div class="slide-card" data-category="tech">
+                <a href="/slides/advent-calendar-20231224/index.html" class="slide-link">
+                    <img src="https://placehold.jp/400x320.png" alt="一人のエンジニアとして開発生産性を爆上げしたい" class="slide-thumbnail">
+                    <div class="slide-content">
+                        <h3 class="slide-title">一人のエンジニアとして開発生産性を爆上げしたい</h3>
+                        <p class="slide-description">エンジニアとして開発生産性を爆上げできたツールを3つ紹介します。</p>
+                        <div class="slide-tags">
+                            <span class="slide-tag">テクノロジー</span>
+                        </div>
+                        <div class="slide-action">
+                            <div class="slide-meta">
+                                <div class="slide-date">
+                                    <i class="far fa-calendar-alt"></i>
+                                    <span>2023年12月24日</span>
+                                </div>
+                            </div>
+                            <a href="/slides/advent-calendar-20231224/index.html" class="view-btn">閲覧する</a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <!--
+        <div class="footer-content">
+            <p>© 2025 スライド資料ポートフォリオ. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-slideshare"></i></a>
+            </div>
+            <p>お問い合わせ: contact@example.com</p>
+        </div>
+        -->
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // フィルター機能
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const slideCards = document.querySelectorAll('.slide-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // アクティブクラスの更新
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // フィルター処理
+                    const filterValue = this.getAttribute('data-filter');
+
+                    slideCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // 検索機能
+            const searchInput = document.querySelector('.search-input');
+
+            searchInput.addEventListener('input', function() {
+                const searchValue = this.value.toLowerCase();
+
+                slideCards.forEach(card => {
+                    const title = card.querySelector('.slide-title').textContent.toLowerCase();
+                    const description = card.querySelector('.slide-description').textContent.toLowerCase();
+                    const tags = Array.from(card.querySelectorAll('.slide-tag')).map(tag => tag.textContent.toLowerCase());
+
+                    if (title.includes(searchValue) || description.includes(searchValue) || tags.some(tag => tag.includes(searchValue))) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
