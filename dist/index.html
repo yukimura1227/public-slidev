@@ -121,7 +121,7 @@
 
         .slides-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2rem;
         }
 
@@ -132,6 +132,7 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             position: relative;
+            max-width: 320px;
         }
 
         .slide-card:hover {
@@ -140,9 +141,12 @@
         }
 
         .slide-thumbnail {
-            width: 100%;
-            height: 180px;
+            max-height: 225px;
+        }
+
+        .slide-thumbnail-image {
             object-fit: cover;
+            width: 100%;
             border-bottom: 1px solid var(--light-gray);
         }
 
@@ -270,7 +274,7 @@
             color: var(--accent-color);
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 576px) {
             .filter-container {
                 flex-direction: column;
                 align-items: flex-start;
@@ -288,8 +292,12 @@
                 width: 100%;
             }
 
+            .slide-card {
+                max-width: 100%;
+            }
+
             .slides-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             }
         }
     </style>
@@ -321,7 +329,9 @@
             <div class="slide-card" data-category="tech">
                 <div class="featured-badge">注目</div>
                 <a href="/slides/20241024_it_engineer_scary_experience_lt/index.html" class="slide-link">
-                    <img src="https://placehold.jp/400x320.png" alt="ITエンジニアLT大会 本当にあった怖い体験談" class="slide-thumbnail">
+                    <div class="slide-thumbnail">
+                        <img src="/thumb/20241024_it_engineer_scary_experience_lt.png" alt="ITエンジニアLT大会 本当にあった怖い体験談" class="slide-thumbnail-image">
+                    </div>
                     <div class="slide-content">
                         <h3 class="slide-title">ITエンジニアLT大会 本当にあった怖い体験談</h3>
                         <p class="slide-description">ITエンジニアLT大会 本当にあった怖い体験談</p>
@@ -344,7 +354,9 @@
             <!-- スライド2 -->
             <div class="slide-card" data-category="tech">
                 <a href="/slides/advent-calendar-20231224/index.html" class="slide-link">
-                    <img src="https://placehold.jp/400x320.png" alt="一人のエンジニアとして開発生産性を爆上げしたい" class="slide-thumbnail">
+                    <div class="slide-thumbnail">
+                        <img src="https://placehold.jp/320x180.png" alt="一人のエンジニアとして開発生産性を爆上げしたい" class="slide-thumbnail">
+                    </div>
                     <div class="slide-content">
                         <h3 class="slide-title">一人のエンジニアとして開発生産性を爆上げしたい</h3>
                         <p class="slide-description">エンジニアとして開発生産性を爆上げできたツールを3つ紹介します。</p>
