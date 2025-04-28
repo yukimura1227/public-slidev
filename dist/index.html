@@ -13,6 +13,7 @@
             --light-gray: #e9ecef;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
+            --container-with: 1200px;
         }
 
         * {
@@ -39,7 +40,7 @@
         }
 
         .header-content {
-            max-width: 1200px;
+            max-width: var(--container-with);
             margin: 0 auto;
             padding: 0 2rem;
         }
@@ -57,7 +58,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: var(--container-with);
             margin: 0 auto;
             padding: 0 2rem;
         }
@@ -252,7 +253,7 @@
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: var(--container-with);
             margin: 0 auto;
             padding: 0 2rem;
         }
